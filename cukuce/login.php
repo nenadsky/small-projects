@@ -1,18 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ћаскалица</title>
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
+<?php include_once "header.php"; ?>
+
   <body>
     <div class="wrapper">
       <section class="form login">
         <header>Realtime chat app</header>
         <form action="#">
-          <div class="error-txt">This is an error message</div>
+          <div class="error-txt"></div>
 
           <div class="field input">
             <label for="email">Email address</label>
@@ -38,10 +31,13 @@
             <input type="submit" value="Continue to chat" />
           </div>
         </form>
-        <div class="link">Not yet singed up? <a href="#">Sign Up now</a></div>
+        <div class="link">Not yet singed up? <a href="index.php">Sign Up now</a></div>
       </section>
     </div>
 
     <script src="js/all.js"></script>
+    <script src="js/pass-show-hide.js"></script>
+    <script src="js/login.js"></script>
+
   </body>
 </html>
