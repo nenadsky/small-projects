@@ -1,16 +1,14 @@
-const pswrdField = document.querySelector(
-  ".form .field input[type='password']"
-);
-toggleBtn = document.querySelector(".form .field .eye");
+const pswrdField = document.querySelector(".form input[type='password']"),
+  toggleBtn = document.querySelector(".form .field .eye");
 
-fontAwesome = document.querySelector(".form .field .eye i");
+console.log(pswrdField);
 
 toggleBtn.onclick = () => {
   if (pswrdField.type == "password") {
     pswrdField.type = "text";
-    fontAwesome.classList.add("active");
+    toggleBtn.classList.add("active");
   } else {
     pswrdField.type = "password";
-    fontAwesome.classList.remove("active");
+    toggleBtn.classList.remove("active");
   }
 };

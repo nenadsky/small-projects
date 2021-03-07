@@ -118,9 +118,9 @@ body {
 }
 
 /* diskutabilno da li radi u opste ovo*/
-.eye.active::before {
+.form form .field .eye.active::before {
   color: #333;
-  content: "\f070";
+  /* content: "\f070"; */
 }
 
 .form .link {
