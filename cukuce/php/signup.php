@@ -10,7 +10,7 @@
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $sql = mysqli_query($conn, "SELECT email FROM users WHERE email = '{$email}'");
             if (mysqli_num_rows($sql) > 0) {
-                echo "$email - This emailalready exists!"; 
+                echo "$email - This email already exists!"; 
             } else {
                 if(isset($_FILES['user-img'])) {
                     $img_name = $_FILES['user-img']['name'];
@@ -30,7 +30,12 @@
                             $random_id = rand(time(), 10000000);
                         }
 
-                        $sql2 = mysqli_query($conn, "INSERT INTO users (unique_id, fname, lname, email, password, img, status) VALUES ({$random_id}, '{$fname}', '{$lname}', '{$email}', '{$password}', '{$new_img_name}', '{$status}')");
+                        // create secure password hash
+                        $pass = password_hash($password, PASSWORD_DEFAULT);
+
+                        $sql2 = mysqli_query($conn, "INSERT INTO 
+                        users (unique_id, fname, lname, email, password, img, status) 
+                        VALUES ({$random_id}, '{$fname}', '{$lname}', '{$email}', '{$pass}', '{$new_img_name}', '{$status}')");
 
                         if ($sql2) {
                            $sql3 = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");

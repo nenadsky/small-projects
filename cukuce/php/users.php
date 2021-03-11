@@ -10,5 +10,5 @@
         include "data.php";
     }
 
-    echo $output;
+    echo $output;  
 ?>
