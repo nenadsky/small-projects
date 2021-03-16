@@ -14,7 +14,6 @@
         <header>Realtime chat app</header>
         <form action="#">
           <div class="error-txt"></div>
-          <?php var_dump($_SESSION); ?>
           <div class="field input">
             <label for="otp">Verification code</label>
             <input
