@@ -9,8 +9,6 @@
 <?php include_once "header.php"; ?>
 
   <body>
-    <?php var_dump($_SESSION); ?>
-
     <div class="wrapper">
       <section class="form login">
         <header>Realtime chat app</header>
