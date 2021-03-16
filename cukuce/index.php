@@ -1,7 +1,7 @@
 <?php
   session_start();
-  if(isset($_SESSION['unique_id'])) {
-    header("location: users.php");
+  if(isset($_SESSION['email'])) {
+    header("location: verify.php");
   }
 ?>
 

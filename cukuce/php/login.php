@@ -2,8 +2,14 @@
 
     session_start();
     include_once "config.php";
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+    // nisam siguran da ovo treba da stoji ovako
+    if (isset($_POST)) {
+        $email = mysqli_real_escape_string($conn, $_POST['email']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+    } else {
+        $email = mysqli_real_escape_string($conn, $_GET['email']);
+        $password = mysqli_real_escape_string($conn, $_GET['password']);
+    }
 
     if (!empty($email) && !empty($password)) {
         // check if email is valid
@@ -13,17 +19,22 @@
             $sqlMail = mysqli_query($conn, $queryMail);
             if(mysqli_num_rows($sqlMail) > 0) { 
                 $row = mysqli_fetch_assoc($sqlMail);
-                // check if entered pass hash is same as in db -> login
-                $pass = password_verify($password, $row['password']);
-                if($pass) {
-                    $status = "Active now";
-                    $sql2 = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id = {$row['unique_id']}");
-                    if ($sql2) {
-                        $_SESSION['unique_id'] = $row['unique_id'];
-                        echo 'success';
-                    }
+                if ( $row['verification_status'] === NULL ) {
+                    $_SESSION['email'] = $row['email'];
+                    echo 'Account still not activated!';
                 } else {
-                    echo 'Wrong password!';
+                    // check if entered pass hash is same as in db -> login
+                    $pass = password_verify($password, $row['password']);
+                    if($pass) {
+                        $status = "Active now";
+                        $sql2 = mysqli_query($conn, "UPDATE users SET status = '{$status}' WHERE unique_id = {$row['unique_id']}");
+                        if ($sql2) {
+                            $_SESSION['unique_id'] = $row['unique_id'];
+                            echo 'success';
+                        }
+                    } else {
+                        echo 'Wrong password!';
+                    }
                 }
             } else {
                 echo 'There is no user with [' . $email . '] email!';
