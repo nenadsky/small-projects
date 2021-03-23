@@ -11,25 +11,36 @@
                 $row = mysqli_fetch_assoc($queryExe);
                 if ($otp == $row['code']) {
                     $code = 0;
-                    $verStatus = 1;
-                    $status = 'Active now!';
-                    $sqlAccountActivation = "UPDATE users SET status = '{$status}', code = {$code}, verification_status = {$verStatus} WHERE code = {$otp} AND email = '{$_SESSION['email']}' ";
-                    $queryAccountActivation = mysqli_query($conn, $sqlAccountActivation);
-                    if ( $queryAccountActivation ) {
-                        $_SESSION['unique_id'] = $row['unique_id'];
-                        echo 'success';
+                    if ( $_SESSION['page'] == 'activate') {
+                        $verStatus = 1;
+                        $status = 'Active now!';
+                        $sqlAccountActivation = "UPDATE users SET status = '{$status}', code = {$code}, verification_status = {$verStatus} WHERE code = {$otp} AND email = '{$_SESSION['email']}' ";
+                        $queryAccountActivation = mysqli_query($conn, $sqlAccountActivation);
+                        if ( $queryAccountActivation ) {
+                            $_SESSION['unique_id'] = $row['unique_id'];
+                            echo 'success activating';
+                        } else {
+                            echo 'Ups! Something went wrong with the query! Error: '. mysqli_error($conn);
+                        }
+                    } elseif ( $_SESSION['page'] == 'reset' ) {
+                        $sqlPassReset = "UPDATE users SET code = {$code}, WHERE code = {$otp} AND email = '{$_SESSION['email']}' ";
+                        $queryPassReset = mysqli_query($conn, $sqlPassReset);
+                        if ( $queryPassReset ) {
+                            $_SESSION['email'] = $row['email'];
+                            $_SESSION['action'] = 'reset';
+                            echo 'success reseting';
+                        } else {
+                            echo 'Ups! Something went wrong with the query! Error: '. mysqli_error($conn);
+                        }
                     } else {
-                        echo 'Ups! Something went wrong with the query! Error: '. mysqli_error($conn);
+                        echo '$otp - Code doesn\'t match! Please try again!';
                     }
-                } else {
-                    echo '$otp - Code doesn\'t match! Please try again!';
                 }
             } else {
                 echo 'There is no record for this email, or code not present!';
             }
         } else {
             echo "$otp - Is not a valid integer number!";
-
         }
     } else {
         echo 'Verification code not entered!';

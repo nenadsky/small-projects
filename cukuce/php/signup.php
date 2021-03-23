@@ -34,11 +34,11 @@
                         $pass = password_hash($password, PASSWORD_DEFAULT);
                         $code = rand(999999, 111111);
 
-                        $sql2 = mysqli_query($conn, "INSERT INTO 
+                        $insertQuery = mysqli_query($conn, "INSERT INTO 
                         users (unique_id, fname, lname, email, password, img, status, code) 
                         VALUES ({$random_id}, '{$fname}', '{$lname}', '{$email}', '{$pass}', '{$new_img_name}', '{$status}', {$code})");
 
-                        if ($sql2) {
+                        if ($insertQuery) {
                            $sql3 = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");
                            if (mysqli_num_rows($sql3) > 0) {
                                $row = mysqli_fetch_assoc($sql3);
@@ -47,6 +47,7 @@
                                 $sender = "From: email@nenadsky.com";
                                 if(mail($email, $subject, $message, $sender)){
                                     $_SESSION['email'] = $row['email'];
+                                    $_SESSION['page'] = 'activate';
                                     echo 'success';
                                 }else{
                                     echo "Failed while sending code!";
