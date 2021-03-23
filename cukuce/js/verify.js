@@ -1,4 +1,4 @@
-const form = document.querySelector(".reset form");
+const form = document.querySelector(".verify form");
 verifyBtn = form.querySelector(".button input");
 errorText = form.querySelector(".error-txt");
 
