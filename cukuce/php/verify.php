@@ -32,9 +32,9 @@
                         } else {
                             echo 'Ups! Something went wrong with the query! Error: '. mysqli_error($conn);
                         }
-                    } else {
-                        echo '$otp - Code doesn\'t match! Please try again!';
-                    }
+                    } 
+                } else {
+                    echo '$otp - Code doesn\'t match! Please try again!';
                 }
             } else {
                 echo 'There is no record for this email, or code not present!';
