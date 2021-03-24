@@ -1,6 +1,6 @@
-const form = document.querySelector(".new-pass form");
-passBtn = form.querySelector(".button input");
-errorText = form.querySelector(".error-txt");
+const form = document.querySelector(".new-pass form"),
+  passBtn = form.querySelector(".button input"),
+  errorText = form.querySelector(".error-txt");
 
 form.onsubmit = (e) => {
   e.preventDefault();
