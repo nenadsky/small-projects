@@ -24,7 +24,7 @@
             />
           </div>
           <div class="field button">
-            <input type="submit" name="check" value="Verify" />
+            <input type="submit" value="Verify" />
           </div>
         </form>
         <div class="link">Not yet singed up? <a href="index.php">Sign Up now</a></div>

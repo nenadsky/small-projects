@@ -15,7 +15,11 @@ resetBtn.onclick = () => {
       if (xhr.status === 200) {
         let data = xhr.response;
         if (data === "success") {
-          location.href = "verify.php";
+          errorText.textContent = data;
+          errorText.style.display = "block";
+          setTimeout(function () {
+            location.href = "verify.php";
+          }, 2000);
         } else {
           errorText.textContent = data;
           errorText.style.display = "block";
