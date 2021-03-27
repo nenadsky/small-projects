@@ -1,30 +1,25 @@
-const form = document.querySelector(".verify form");
-verifyBtn = form.querySelector(".button input");
-errorText = form.querySelector(".error-txt");
+const form = document.querySelector(".reset form"),
+  resetBtn = form.querySelector(".button input"),
+  errorText = form.querySelector(".error-txt");
 
 form.onsubmit = (e) => {
   e.preventDefault();
 };
 
-verifyBtn.onclick = () => {
+resetBtn.onclick = () => {
   // Lets start Ajax
   let xhr = new XMLHttpRequest(); //creating xml object
-  xhr.open("POST", "php/verify.php", true);
+  xhr.open("POST", "php/reset.php", true);
   xhr.onload = () => {
     if (xhr.readyState === XMLHttpRequest.DONE) {
       if (xhr.status === 200) {
         let data = xhr.response;
-        if (data === "success activating") {
+        console.log(data);
+        if (data === "Email width reset code has been sent") {
           errorText.textContent = data;
           errorText.style.display = "block";
           setTimeout(function () {
-            location.href = "login.php";
-          }, 2000);
-        } else if (data === "success reseting") {
-          errorText.textContent = data;
-          errorText.style.display = "block";
-          setTimeout(function () {
-            location.href = "new-pass.php";
+            location.href = "verify.php";
           }, 2000);
         } else {
           errorText.textContent = data;
