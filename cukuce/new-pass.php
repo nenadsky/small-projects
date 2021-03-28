@@ -22,19 +22,19 @@
             <input
               type="password"
               name="new-pass"
-              id="password"
+              id="new-password"
               placeholder="Password"
             />
             <div class="eye"><i class="fas fa-eye"></i></div>
           </div>
 
           <div class="field input">
-            <label for="password">Password</label>
+            <label for="password">Repeat Password</label>
             <input
               type="password"
               name="c-new-pass"
-              id="password"
-              placeholder="Password"
+              id="c-password"
+              placeholder="Repeat Password"
             />
             <div class="eye"><i class="fas fa-eye"></i></div>
           </div>
@@ -48,6 +48,7 @@
 
     <script src="js/all.js"></script>
     <script src="js/pass-show-hide.js"></script>
+    <script src="js/new-pass.js"></script>
 
   </body>
 </html>

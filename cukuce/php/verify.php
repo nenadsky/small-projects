@@ -23,25 +23,25 @@
                             echo "Ups! Something went wrong with the query! Error: ". mysqli_error($conn);
                         }
                     } else if ( $_SESSION['action'] == 'reset' ) {
-                        $sqlPassReset = "UPDATE users SET code = $code WHERE code = {$otp} AND email = '{$_SESSION['email']}'";
-                        $queryPassReset = mysqli_query( $con, $sqlPassReset );
+                        $sqlPassReset = "UPDATE users SET code = $code WHERE email = {$_SESSION['email']}";
+                        $queryPassReset = mysqli_query( $conn, $sqlPassReset );
                         if ( $queryPassReset ) {
                             $_SESSION['email'] = $row['email'];
                             echo "success reseting";
                         } else {
-                            echo "Ups! Something went wrong with the query! Error: ". mysqli_error($conn);
+                            echo "Ups! Something went wrong with the reset query! Error: ". mysqli_error($conn);
                         }
                     } else {
                         echo 'Unknown action';
                     }
                 } else {
-                    echo '$otp - Code doesn\'t match! Please try again!';
+                    echo $otp . ' - Code doesn\'t match! Please try again!';
                 }
             } else {
                 echo 'There is no record for this email, or code not present!';
             }
         } else {
-            echo "$otp - Is not a valid integer number!";
+            echo $otp . " - Is not a valid integer number!";
 
         }
     } else {

@@ -17,7 +17,7 @@
                     $message = "Your password reset code is $code";
                     $sender = "From: email@nenadsky.com";
                     if(mail($email, $subject, $message, $sender)){
-                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['email'] = $email;
                         $_SESSION['action'] = 'reset';
                         echo 'Email width reset code has been sent';
                     }else{
