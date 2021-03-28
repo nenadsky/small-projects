@@ -23,7 +23,7 @@
                             echo "Ups! Something went wrong with the query! Error: ". mysqli_error($conn);
                         }
                     } else if ( $_SESSION['action'] == 'reset' ) {
-                        $sqlPassReset = "UPDATE users SET code = $code WHERE email = {$_SESSION['email']}";
+                        $sqlPassReset = "UPDATE users SET code = $code WHERE email = '{$_SESSION['email']}'";
                         $queryPassReset = mysqli_query( $conn, $sqlPassReset );
                         if ( $queryPassReset ) {
                             $_SESSION['email'] = $row['email'];
