@@ -47,12 +47,13 @@
                                 $sender = "From: email@nenadsky.com";
                                 if(mail($email, $subject, $message, $sender)){
                                     $_SESSION['email'] = $row['email'];
+                                    $_SESSION['action'] = 'activate';
                                     echo 'success';
                                 }else{
                                     echo "Failed while sending code!";
                                 }
                            }
-                        }else {
+                        } else {
                             echo 'Something went wrong!';
                         }
                     } else {
