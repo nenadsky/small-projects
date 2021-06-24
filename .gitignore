@@ -6,3 +6,6 @@ cukuce/php/images/1615849968iconfinder_archlinux_386451.png
 cukuce/php/images/1615850236iconfinder_archlinux_386451.png
 cukuce/php/images/1615850423iconfinder_archlinux_386451.png
 cukuce/php/images/1615850899iconfinder_archlinux_386451.png
+node_modules
+.parcel-cache
+dist
